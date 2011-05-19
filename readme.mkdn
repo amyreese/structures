@@ -1,0 +1,15 @@
+Data Structures
+===============
+
+This repository contains a set of generic C++ data structure implementations.  There are only experimental, and in no
+way should be used in any sort of production project.  Wherever possible, clarity and correctness of implementation
+is greatly preferred over speed or efficiency.
+
+Copyright (c) 2011 John Reese
+
+
+References
+----------
+
+* [List of data structures](http://en.wikipedia.org/wiki/List_of_data_structures)
+
