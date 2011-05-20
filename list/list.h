@@ -3,6 +3,9 @@
  * Licensed under the MIT license
  */
 
+#ifndef __JREESE_LIST__
+#define __JREESE_LIST__
+
 #include <stdlib.h>
 
 /**
@@ -30,9 +33,6 @@ class ListNode
 		T value;
 
 };
-
-template <class T>
-class ListIter;
 
 /**
  * Linked list implementation using doubly-linked nodes.
@@ -365,3 +365,6 @@ class ListIter
 		ListNode<T>* position;
 
 };
+
+#endif
+
