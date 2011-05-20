@@ -25,8 +25,8 @@ int main(int argc, char* argv[])
 
 	printf("v[60]: %d\n", v[60]);
 
-	//v[60] = 4;
-	//printf("v[60] = 4: %d\n", v[60]);
+	v[60] = 4;
+	printf("v[60] = 4: %d\n", v[60]);
 
 	for (int i = 0; i < 300; i++)
 	{
@@ -34,6 +34,14 @@ int main(int argc, char* argv[])
 	}
 
 	printf("300 elements pushed: length %d, space %d\n", v.length(), v.space());
+
+	try {
+		v[601] = 1;
+	}
+	catch (int e)
+	{
+		printf("v[601] = 1: exception caught\n");
+	}
 
 	return 0;
 }

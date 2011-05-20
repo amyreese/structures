@@ -3,8 +3,8 @@
  * Licensed under the MIT license
  */
 
-#ifndef __JREESE_LIST__
-#define __JREESE_LIST__
+#ifndef __JREESE_VECTOR__
+#define __JREESE_VECTOR__
 
 #include <math.h>
 #include <stdlib.h>
@@ -37,11 +37,11 @@ class Vector
 		 * @param Element position
 		 * @return Element
 		 */
-		T operator[](unsigned int position)
+		T& operator[](unsigned int position)
 		{
 			if (position >= count)
 			{
-				return (T) NULL;
+				throw 0;
 			}
 
 			return data[start+position];
