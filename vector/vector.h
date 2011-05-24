@@ -93,7 +93,7 @@ class Vector
 		{
 			if (count < 1)
 			{
-				return (T) NULL;
+				throw 0;
 			}
 
 			back--;
@@ -127,7 +127,7 @@ class Vector
 		{
 			if (count < 1)
 			{
-				return (T) NULL;
+				throw 0;
 			}
 
 			front--;
