@@ -120,20 +120,20 @@ class List
 		 */
 		void append(T element)
 		{
-			ListNode<T>* iter = new ListNode<T>(element);
+			ListNode<T>* node = new ListNode<T>(element);
 
-			iter->prev = end;
+			node->prev = end;
 
 			if (start == NULL)
 			{
-				start = iter;
+				start = node;
 			}
 			if (end != NULL)
 			{
-				end->next = iter;
+				end->next = node;
 			}
 
-			end = iter;
+			end = node;
 
 			count++;
 		}
