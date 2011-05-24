@@ -94,6 +94,19 @@ int main(int argc, char* argv[])
 	pos = l.find(6);
 	printf("find(6): position: %d\n", pos);
 
+	printf("\n");
+
+	ListIter<int> i(l);
+	ListIter<int> j(l.start);
+
+	printf("*i: %d, *j: %d\n", *i, *j);
+	printf("i == j: %d\n", i == j);
+
+	j++;
+
+	printf("j++: *i: %d, *j: %d\n", *i, *j);
+	printf("i == j: %d\n", i == j);
+
 	return 0;
 }
 

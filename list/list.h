@@ -269,6 +269,16 @@ class ListIter
 		}
 
 		/**
+		 * Create a new iterator pointing at a specific list node.
+		 *
+		 * @param List node
+		 */
+		ListIter(ListNode<T>* n)
+		{
+			position = n;
+		}
+
+		/**
 		 * Set an iterator position to the given list node.
 		 *
 		 * @param Target node
@@ -350,6 +360,17 @@ class ListIter
 		}
 
 		/**
+		 * Check if two iterators point at the same node.
+		 *
+		 * @param Target iterator
+		 * @return True if pointing at the same node
+		 */
+		bool operator==(ListIter<T> iter)
+		{
+			return position == iter.position;
+		}
+
+		/**
 		 * Check if the iterator points at the given node.
 		 *
 		 * @param Target node
@@ -358,6 +379,17 @@ class ListIter
 		bool operator!=(ListNode<T>* node)
 		{
 			return position != node;
+		}
+
+		/**
+		 * Check if two iterators point at the same node.
+		 *
+		 * @param Target iterator
+		 * @return False if pointing at the same node
+		 */
+		bool operator!=(ListIter<T> iter)
+		{
+			return position != iter.position;
 		}
 
 	private:
