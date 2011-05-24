@@ -21,7 +21,7 @@ class Vector
 		 */
 		Vector(unsigned int s=128)
 		{
-			size = s;
+			min = size = s;
 			start = size / 10;
 			count = 0;
 
@@ -96,7 +96,13 @@ class Vector
 				throw 0;
 			}
 
-			back--;
+			back = back > 1 ? back-1 : 1;
+
+			if (count < size / 4 && size > min)
+			{
+				resize();
+			}
+
 			return data[start + --count];
 		}
 
@@ -130,7 +136,13 @@ class Vector
 				throw 0;
 			}
 
-			front--;
+			front = front > 1 ? front-1 : 1;
+
+			if (count < size / 4 && size > min)
+			{
+				resize();
+			}
+
 			count--;
 			return data[start++];
 		}
@@ -145,7 +157,11 @@ class Vector
 			// Try to semi-intelligently resize at a growing rate
 			if (nsize == 0 || nsize <= size)
 			{
-				if (count < size / 2)
+				if (count < size / 4)
+				{
+					nsize = size / 2;
+				}
+				else if (count < size / 2)
 				{
 					nsize = size;
 				}
@@ -159,14 +175,19 @@ class Vector
 				}
 			}
 
+			if (nsize < min)
+			{
+				nsize = min;
+			}
+
 			T* ndata = new T[nsize];
 
 			// Try to semi-intelligently pick a new start position based on a history
-			// how many elements were added on front or back since last resize
+			// how many elements were added or removed on front or back since last resize
 			float percent = (float) front / (float) (front + back);
 			float diff = nsize - count;
-			float buffer = diff * 0.10f;
-			float pool = diff * 0.80f;
+			float buffer = diff * 0.15f;
+			float pool = diff * 0.70f;
 			unsigned int nstart = floor(buffer + percent * pool);
 
 			printf("Resizing vector from %d to %d, count %d, front %f%%, starting at %d...\n", size, nsize, count, percent, nstart);
@@ -188,6 +209,7 @@ class Vector
 
 	private:
 		T* data;	
+		unsigned int min;
 		unsigned int size;
 		unsigned int start;
 		unsigned int count;
