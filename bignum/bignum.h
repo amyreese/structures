@@ -70,7 +70,12 @@ class Bignum
 		 */
 		Bignum& operator= (const Bignum& copy)
 		{
-			//printf("ID %u: Copy(%u) operator\n", id, copy.id);
+			printf("ID %u: Copy(%u) operator\n", id, copy.id);
+			if (id == copy.id)
+			{
+				return *this;
+			}
+
 			if (buffer != NULL)
 			{
 				free(buffer);
@@ -87,6 +92,48 @@ class Bignum
 				buffer[i] = copy.buffer[i];
 			}
 			count = copy.count;
+
+			return *this;
+		}
+
+		/**
+		 * Addition operators.
+		 *
+		 * @param Value to add
+		 * @return Reference to current Bignum
+		 */
+		Bignum& operator+ (const uint value)
+		{
+			printf("ID %u: Add(%u) operator\n", id, value);
+			add(value);
+
+			return *this;
+		}
+		Bignum& operator+ (const Bignum& value)
+		{
+			printf("ID %u: AddBignum(%u) operator\n", id, value.id);
+			add(value);
+
+			return *this;
+		}
+
+		/**
+		 * In-place addition operators.
+		 *
+		 * @param Value to add
+		 * @return Reference to current Bignum
+		 */
+		Bignum& operator+= (const uint value)
+		{
+			printf("ID %u: AddEq(%u) operator\n", id, value);
+			add(value);
+
+			return *this;
+		}
+		Bignum& operator+= (const Bignum& value)
+		{
+			printf("ID %u: AddEqBignum(%u) operator\n", id, value.id);
+			add(value);
 
 			return *this;
 		}
@@ -135,6 +182,58 @@ class Bignum
 				//printf("%u %u %u %d\n", value, digit, result, carry);
 				buffer[i++] = result;
 				value /= base;
+			}
+
+			while (carry)
+			{
+				result = 1 + buffer[i];
+				carry = false;
+
+				if (result >= base)
+				{
+					carry = true;
+					result = 0;
+				}
+
+				buffer[i++] = result;
+			}
+
+			count = i > count ? i : count;
+		}
+
+		/**
+		 * Add a second Bignum value to the current value.
+		 *
+		 * @param Bignum value to add
+		 */
+		void add(const Bignum& value)
+		{
+			uint i = 0;
+			bool carry = false;
+			uint digit;
+			uint result;
+
+			while (i < value.count)
+			{
+				digit = value.buffer[i];
+				result = digit + buffer[i];
+
+				//printf("%u %u %u %d\n", value, digit, result, carry);
+
+				if (carry)
+				{
+					result += 1;
+					carry = false;
+				}
+
+				if (result >= base)
+				{
+					carry = true;
+					result = result % base;
+				}
+
+				//printf("%u %u %u %d\n", value, digit, result, carry);
+				buffer[i++] = result;
 			}
 
 			while (carry)
