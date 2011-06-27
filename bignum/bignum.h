@@ -120,19 +120,21 @@ class Bignum
 		 * @param Value to add
 		 * @return Reference to current Bignum
 		 */
-		Bignum& operator+ (const uint value)
+		Bignum operator+ (const uint value)
 		{
 			printf("ID %u: Add(%u) operator\n", id, value);
-			add(value);
+			Bignum n = *this;
+			n.add(value);
 
-			return *this;
+			return n;
 		}
-		Bignum& operator+ (const Bignum& value)
+		Bignum operator+ (const Bignum& value)
 		{
 			printf("ID %u: AddBignum(%u) operator\n", id, value.id);
-			add(value);
+			Bignum n = *this;
+			n.add(value);
 
-			return *this;
+			return n;
 		}
 
 		/**
@@ -162,19 +164,21 @@ class Bignum
 		 * @param Value to multiply
 		 * @return Reference to current Bignum
 		 */
-		Bignum& operator* (const uint value)
+		Bignum operator* (const uint value)
 		{
 			printf("ID %u: Mul(%u) operator\n", id, value);
-			mul(value);
+			Bignum n = *this;
+			n.mul(value);
 
-			return *this;
+			return n;
 		}
-		Bignum& operator* (const Bignum& value)
+		Bignum operator* (const Bignum& value)
 		{
 			printf("ID %u: MulBignum(%u) operator\n", id, value.id);
-			mul(value);
+			Bignum n = *this;
+			n.mul(value);
 
-			return *this;
+			return n;
 		}
 
 		/**
