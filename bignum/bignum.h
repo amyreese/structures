@@ -157,6 +157,48 @@ class Bignum
 		}
 
 		/**
+		 * Multiplication operators.
+		 *
+		 * @param Value to multiply
+		 * @return Reference to current Bignum
+		 */
+		Bignum& operator* (const uint value)
+		{
+			printf("ID %u: Mul(%u) operator\n", id, value);
+			mul(value);
+
+			return *this;
+		}
+		Bignum& operator* (const Bignum& value)
+		{
+			printf("ID %u: MulBignum(%u) operator\n", id, value.id);
+			mul(value);
+
+			return *this;
+		}
+
+		/**
+		 * In-place multiplication operators.
+		 *
+		 * @param Value to multiply
+		 * @return Reference to current Bignum
+		 */
+		Bignum& operator*= (const uint value)
+		{
+			printf("ID %u: MulEq(%u) operator\n", id, value);
+			mul(value);
+
+			return *this;
+		}
+		Bignum& operator*= (const Bignum& value)
+		{
+			printf("ID %u: MulEqBignum(%u) operator\n", id, value.id);
+			mul(value);
+
+			return *this;
+		}
+
+		/**
 		 * Return the number of digits for the currently stored value.
 		 *
 		 * @return String length
@@ -269,6 +311,59 @@ class Bignum
 			}
 
 			count = i > count ? i : count;
+		}
+
+		/**
+		 * Multiple by the given value. Converts to Bignum before multiplying.
+		 *
+		 * @param Value to multiply
+		 */
+		void mul(const uint value)
+		{
+			Bignum v(value);
+			mul(v);
+		}
+
+		/**
+		 * Multiple by the given Bignum value.
+		 *
+		 * @param Bignum value to multiply
+		 */
+		void mul(const Bignum& value)
+		{
+			uint i, k;
+			uint p, q, r;
+			Bignum result;
+			Bignum total;
+
+			for (i = 0; i < count; i++)
+			{
+				p = buffer[i];
+
+				for (k = 0; k < value.count; k++)
+				{
+					q = value.buffer[k];
+					result = p * q;
+					r = i + k;
+
+					if (r > 0)
+					{
+						result.buffer[r+1] = result.buffer[1];
+						result.buffer[1] = 0;
+						result.buffer[r] = result.buffer[0];
+						result.buffer[0] = 0;
+						result.count += r;
+					}
+
+					total += result;
+				}
+			}
+
+			for (uint i = 0; i < total.count; i++)
+			{
+				buffer[i] = total.buffer[i];
+			}
+			count = total.count;
 		}
 
 		/**

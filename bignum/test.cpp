@@ -58,5 +58,18 @@ int main(int argc, char* argv[])
 	n += m;
 	n.str(buffer, 1000);
 	printf("n += m: %u, %s\n", n.length(), buffer);
+
+	n.mul(2);
+	n.str(buffer, 1000);
+	printf("n.mul(2): %u, %s\n", n.length(), buffer);
+
+	n = n * 3;
+	n.str(buffer, 1000);
+	printf("n = n * 3: %u, %s\n", n.length(), buffer);
+
+	n *= 3;
+	n.str(buffer, 1000);
+	printf("n *= 3: %u, %s\n", n.length(), buffer);
+
 }
 
