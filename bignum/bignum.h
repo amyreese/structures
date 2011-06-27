@@ -70,7 +70,7 @@ class Bignum
 		 */
 		Bignum& operator= (const uint value)
 		{
-			printf("ID %u: Assignment(%u) operator\n", id, value);
+			//printf("ID %u: Assignment(%u) operator\n", id, value);
 			count = 0;
 			resize(size);
 
@@ -88,7 +88,7 @@ class Bignum
 		}
 		Bignum& operator= (const Bignum& copy)
 		{
-			printf("ID %u: Copy(%u) operator\n", id, copy.id);
+			//printf("ID %u: Copy(%u) operator\n", id, copy.id);
 			if (id == copy.id)
 			{
 				return *this;
@@ -122,7 +122,7 @@ class Bignum
 		 */
 		Bignum operator+ (const uint value)
 		{
-			printf("ID %u: Add(%u) operator\n", id, value);
+			//printf("ID %u: Add(%u) operator\n", id, value);
 			Bignum n = *this;
 			n.add(value);
 
@@ -130,7 +130,7 @@ class Bignum
 		}
 		Bignum operator+ (const Bignum& value)
 		{
-			printf("ID %u: AddBignum(%u) operator\n", id, value.id);
+			//printf("ID %u: AddBignum(%u) operator\n", id, value.id);
 			Bignum n = *this;
 			n.add(value);
 
@@ -145,14 +145,14 @@ class Bignum
 		 */
 		Bignum& operator+= (const uint value)
 		{
-			printf("ID %u: AddEq(%u) operator\n", id, value);
+			//printf("ID %u: AddEq(%u) operator\n", id, value);
 			add(value);
 
 			return *this;
 		}
 		Bignum& operator+= (const Bignum& value)
 		{
-			printf("ID %u: AddEqBignum(%u) operator\n", id, value.id);
+			//printf("ID %u: AddEqBignum(%u) operator\n", id, value.id);
 			add(value);
 
 			return *this;
@@ -166,7 +166,7 @@ class Bignum
 		 */
 		Bignum operator* (const uint value)
 		{
-			printf("ID %u: Mul(%u) operator\n", id, value);
+			//printf("ID %u: Mul(%u) operator\n", id, value);
 			Bignum n = *this;
 			n.mul(value);
 
@@ -174,7 +174,7 @@ class Bignum
 		}
 		Bignum operator* (const Bignum& value)
 		{
-			printf("ID %u: MulBignum(%u) operator\n", id, value.id);
+			//printf("ID %u: MulBignum(%u) operator\n", id, value.id);
 			Bignum n = *this;
 			n.mul(value);
 
@@ -189,14 +189,14 @@ class Bignum
 		 */
 		Bignum& operator*= (const uint value)
 		{
-			printf("ID %u: MulEq(%u) operator\n", id, value);
+			//printf("ID %u: MulEq(%u) operator\n", id, value);
 			mul(value);
 
 			return *this;
 		}
 		Bignum& operator*= (const Bignum& value)
 		{
-			printf("ID %u: MulEqBignum(%u) operator\n", id, value.id);
+			//printf("ID %u: MulEqBignum(%u) operator\n", id, value.id);
 			mul(value);
 
 			return *this;
