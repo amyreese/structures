@@ -68,6 +68,24 @@ class Bignum
 		 * @param Bignum instance to copy from
 		 * @return Reference to this Bignum instance
 		 */
+		Bignum& operator= (const uint value)
+		{
+			printf("ID %u: Assignment(%u) operator\n", id, value);
+			count = 0;
+			resize(size);
+
+			uint i = 0;
+			uint v = value;
+			while (v > 0)
+			{
+				buffer[i++] = (v % base);
+				v /= base;
+			}
+
+			count = i;
+
+			return *this;
+		}
 		Bignum& operator= (const Bignum& copy)
 		{
 			printf("ID %u: Copy(%u) operator\n", id, copy.id);

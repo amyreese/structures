@@ -34,6 +34,10 @@ int main(int argc, char* argv[])
 	n.str(buffer, 1000);
 	printf("n.add(1): %u, %s\n", n.length(), buffer);
 
+	n = 3;
+	n.str(buffer, 1000);
+	printf("n = 3: %u, %s\n", n.length(), buffer);
+
 	n = n + 1;
 	n.str(buffer, 1000);
 	printf("n = n + 1: %u, %s\n", n.length(), buffer);
